@@ -1,0 +1,4 @@
+﻿cl : Command line warning D9035: option 'Gm' has been deprecated and will be removed in a future release
+cl : Command line warning D9007: '/Gm' requires '/Zi or /ZI'; option ignored
+  TanksDoc.cpp
+  Tanks.vcxproj -> F:\ThirdYear\AI\NN-GAME\.\Debug\Tanks.exe
