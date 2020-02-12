@@ -35,7 +35,7 @@ unsigned long ulNumberOfInputs=3;
 //Ten hidden area used in this application. You should generally use as few as possible, since
 //networks with smaller numbers train more quickly, operate more quickly once trained and tend
 //to learn the exemplars more robustly.
-unsigned long ulNumberOfHiddenNodes=1;
+unsigned long ulNumberOfHiddenNodes=10;
 
 //We have just one output - the angle of the AI tank's barrel necessary to hit the player.
 unsigned long ulNumberOfOutputs=1;

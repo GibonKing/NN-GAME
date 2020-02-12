@@ -295,7 +295,9 @@ double *CMLP::pdGetOutputs(
 		}
 		//The stimulation that a hidden neuron receives is translated into its level of activity
 		//by an "activation function":
-		pdah[i]=1.0/(1.0 + exp(-dStimulus));
+
+		pdah[i] =  //(2.0/(1.0+exp(2*-dStimulus)))-1; //1.0/(1.0 + exp(-dStimulus));
+
 		//The logistic function (used in the line above) is by far the most common, though almost
 		//any function can be used. In fact, each hidden neuron can use a different function (though
 		//such a network can no longer be considered neural). Of course, the weights learnt during
