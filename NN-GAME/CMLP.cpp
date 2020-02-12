@@ -188,7 +188,8 @@ double CMLP::dTrainingStep(
 	{
 		for(j=0;j<ulNumberOfInputs+1;j++)
 		{
-			ppdwih[i][j] += dStepSize * (((float)rand() / (float)RAND_MAX/2.0) - 1);
+		for(j=0;j<ulNumberOfInputs+1;j++)
+			ppdwih[i][j] += dStepSize * (double(rand()) / double(RAND_MAX) - 0.5)*2.0;
 		}
 	}
 	//And for the hidden to output layer weights
@@ -196,7 +197,7 @@ double CMLP::dTrainingStep(
 	{
 		for(j=0;j<ulNumberOfHiddenNodes+1;j++)
 		{
-			ppdwho[i][j] += dStepSize * (((float)rand() / (float)RAND_MAX/2.0) - 1);
+			ppdwho[i][j] += dStepSize * (double(rand()) / double(RAND_MAX) - 0.5)*2.0;
 		}
 	}
 
@@ -290,11 +291,11 @@ double *CMLP::pdGetOutputs(
 		//speed.
 		for(j=1;j<ulNumberOfInputs+1;j++)
 		{
-			dStimulus += ppdwih[i][j] * pdInputs[j-i];
+			dStimulus += ppdwih[i][j] * pdInputs[j-1];
 		}
 		//The stimulation that a hidden neuron receives is translated into its level of activity
 		//by an "activation function":
-		pdah[i]=1.0/(1.0 + exp(dStimulus));
+		pdah[i]=1.0/(1.0 + exp(-dStimulus));
 		//The logistic function (used in the line above) is by far the most common, though almost
 		//any function can be used. In fact, each hidden neuron can use a different function (though
 		//such a network can no longer be considered neural). Of course, the weights learnt during

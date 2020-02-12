@@ -88,8 +88,8 @@ void CWorld::Initialise(void)
 	//term describes the AI tank's tendency to consistently under- or over-shoot and the 
 	//variance the random variation in aim that occurs in every shot. Set these values to 
 	//zero to see the neural network at its best - it should hit virtually every time.
-	dErrorVariance=0.0325;
-	dErrorBias=0.0325*2.0*(double(rand()%2)-0.5);
+	dErrorVariance = 0.0; //0.0325;
+	dErrorBias = 0.0; //0.0325*2.0*(double(rand() % 2) - 0.5);
 
 	//If we're generating training data, the active player (the one that has the
 	//controls is always player 1 - the AI.

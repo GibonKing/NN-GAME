@@ -44,7 +44,7 @@ unsigned long ulNumberOfOutputs=1;
 //player's tank around 98% of the time (without the random noise added to its output - i.e. with 
 //dErrorBias and dErrorVariance set to zero). The value of termination error will have to be changed
 //for different types of error measure (see CMLP::dGetPerformance).
-double dTerminationError=0.000025;
+double dTerminationError=0.00005;
 
 //Pointers to the neural network and the game world
 CMLP *pMLP;
@@ -58,7 +58,7 @@ BOOL boGeneratingTrainingData=FALSE;
 
 //When true, tells the game to load an already trained neural network for use in game. When 
 //false causes the game to create a new network and train it.
-BOOL boLoadTrainedNetwork=TRUE;
+BOOL boLoadTrainedNetwork=FALSE;
 
 //Information used to scale the inputs to the neural network (see below)
 double *pdMin;
@@ -222,7 +222,10 @@ CTanksDoc::CTanksDoc()
 			for(j=0;j<ulNumberOfInputs;j++)
 			{				
 				//Inputs range between -1.0 and +1.0
-				ppdTrainingInputs[i][j] = (2 * ((ppdTrainingInputs[i][j] - pdMin[i]) / (pdMax[i] - pdMin[i]))) - 1;
+				ppdTrainingInputs[i][j] -= pdMin[j];
+				ppdTrainingInputs[i][j] /= (pdMax[j] - pdMin[j]);
+				ppdTrainingInputs[i][j] -= 0.5;
+				ppdTrainingInputs[i][j] *= 2.0;
 				//TRACE("you should scale the input in the range -1 to 1. see slide 3. once done, remove this line")
 			}
 		}
